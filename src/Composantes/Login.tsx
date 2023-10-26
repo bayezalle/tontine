@@ -16,7 +16,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
   
   const login = (data: any) => {
     let params = {
-      email: data.email,
+      phoneNumber: data.phoneNumber,
       password: data.password,
     };
     console.log(data);
@@ -36,6 +36,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
             progress: 0,
             toastId: "my_toast",
           });
+
         } else {
           toast.success(response.data.message, {
             position: "top-right",
@@ -47,7 +48,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
             progress: 0,
             toastId: "my_toast",
           });
-          // localStorage.setItem("auth", response.data.token);
+          localStorage.getItem("auth");
           setTimeout(() => {
             history.push("/home");
           }, 3000);
@@ -74,12 +75,12 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                 </h3>
                 <form autoComplete="off" onSubmit={handleSubmit(login)}>
                   <div className="mb-3 mt-4">
-                    <label className="form-label">Email</label>
+                    <label className="form-label">Telephone</label>
                     <input
-                      type="email"
+                      type="phone"
                       className="form-control shadow-none"
                       id="exampleFormControlInput1"
-                      {...register("email", { required: "Email is required!" })}
+                      {...register("phoneNumber", { required: "Email is required!" })}
                     />
                     {errors.email && (
                       <p className="text-danger" style={{ fontSize: 14 }}>

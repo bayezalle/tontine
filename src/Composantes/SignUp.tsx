@@ -14,13 +14,13 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
     reset,
     formState: { errors },
   } = useForm();
+
   const submitData = (data: any) => {
     let params = {
       username: data.username,
       phoneNumber: data.phoneNumber,
       email: data.email,
       password: data.password,
-      // confirmpassword: data.cpassword,
     };
     console.log(data);
     axios
@@ -36,7 +36,9 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
           progress: 0,
           toastId: "my_toast",
         });
+
         localStorage.setItem("auth", response.data.token);
+        
         reset();
         setTimeout(() => {
           history.push("/login");
