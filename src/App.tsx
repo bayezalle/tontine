@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-    <Route exact path="/register" component={SignUp} /> 
+    <Route exact path="/" component={SignUp} /> 
     <Route exact path="/login" component={Login} /> 
     <Route exact path="/home" component={Home} /> 
         {/* <PrivateRoute exact path="/login" component={Login}/> */}

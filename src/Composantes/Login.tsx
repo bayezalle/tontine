@@ -112,7 +112,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                     </button>
                     <p className="card-text pb-2">
                       Creer t'on compte? {" "}
-                      <Link style={{ textDecoration: "none" }} to={"/register"}>
+                      <Link style={{ textDecoration: "none" }} to={"/"}>
                         Sign Up
                       </Link>
                     </p>
