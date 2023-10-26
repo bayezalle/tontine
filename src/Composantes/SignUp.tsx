@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import './conect.css'
 
 type SomeComponentProps = RouteComponentProps;
 const SignUp: FC<SomeComponentProps> = ({ history }) => {
@@ -38,7 +39,6 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
         });
 
         localStorage.setItem("auth", response.data.token);
-        
         reset();
         setTimeout(() => {
           history.push("/login");
@@ -56,10 +56,10 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
           className="row d-flex justify-content-center align-items-center"
           style={{ height: "100vh" }}
         >
-          <div className="card mb-3 mt-3 rounded bg-secondary text-white" style={{ maxWidth: "380px" }}>
+          <div className="card mb-3 mt-3 rounded bg-white shadow " style={{ maxWidth: "380px" }}>
             <div className="col-md-12">
-              <div className="card-body">
-                <h3 className="card-title text-center text-white mt-3 mb-3">
+              <div    className="card-body">
+                <h3 className="card-title text-center text-secondary mt-3 mb-3">
                   Sign Up Form
                 </h3>
                 <form
@@ -72,15 +72,15 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       <label className="form-label">Nom d'utilisateur</label>
                       <input
                         type="text"
-                        className="form-control form-control-sm"
+                        className="form-control form-control-sm input-couleur"
                         id="exampleFormControlInput1"
                         {...register("username", {
-                          required: "Firstname is required!",
+                          required: "username is required!",
                         })}
                       />
                       {errors.username && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
-                          {/* {errors.firstname.message} */}
+                          {/* {errors.username.message} */}
                         </p>
                       )}
                     </div>
@@ -90,15 +90,15 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       <label className="form-label">Telephone</label>
                       <input
                         type="text"
-                        className="form-control form-control-sm"
+                        className="form-control form-control-sm input-couleur"
                         id="exampleFormControlInput2"
                         {...register("phoneNumber", {
-                          required: "Lastname is required!",
+                          required: "phoneNumber is required!",
                         })}
                       />
                       {errors.phoneNumber && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
-                          {/* {errors.lastname.message} */}
+                          {/* {errors.phoneNumber.message} */}
                         </p>
                       )}
                     </div>
@@ -108,7 +108,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                     <label className="form-label">Email</label>
                     <input
                       type="email"
-                      className="form-control form-control-sm"
+                      className="form-control form-control-sm input-couleur"
                       id="exampleFormControlInput3"
                       {...register("email", { required: "Email is required!" })}
                     />
@@ -117,12 +117,12 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                         {/* {errors.email.message} */}
                       </p>
                     )}
-                  </div>
+                  </div> 
                   <div className="">
                     <label className="form-label">Password</label>
                     <input
                       type="password"
-                      className="form-control form-control-sm"
+                      className="form-control form-control-sm input-couleur"
                       id="exampleFormControlInput5"
                       {...register("password", {
                         required: "Password is required!",
@@ -134,32 +134,13 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       </p>
                     )}
                   </div>
-                  {/* <div>
-                    <label className="form-label">Confirm Password</label>
-                    <input
-                      type="password"
-                      className="form-control form-control-sm"
-                      id="exampleFormControlInput6"
-                      {...register("cpassword", {
-                        required: "Confirm Password is required",
-
-                        validate: (value) =>
-                          value === watch("password") ||
-                          "Passwords don't match.",
-                      })}
-                    />
-                    {errors.cpassword && (
-                      <p className="text-danger" style={{ fontSize: 14 }}>
-                        {errors.cpassword.message}
-                      </p>
-                    )}
-                  </div> */}
+                 
                   <div className="text-center mt-4 ">
                     <button
-                      className="btn btn-primary text-center shadow-none mb-3"
+                      className="btn btn-couleur text-center shadow-none mb-3"
                       type="submit"
                     >
-                      Submit
+                      Inscription
                     </button>
                     <p className="card-text">
                       Si vous avaiez un compte? {" "}

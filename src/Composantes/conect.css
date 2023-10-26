@@ -1,0 +1,16 @@
+.bg-form{
+    background-color: #093545;
+    color: white;
+}
+.input-couleur{
+    background-color: #093545;
+    color: white;
+    border-radius: 50px;
+}
+.btn-couleur{
+    background-color: #20DF7F;
+    color: black;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}

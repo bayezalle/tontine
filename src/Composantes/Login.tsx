@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { RouteComponentProps } from "react-router-dom";
+import './conect.css'
 
 type SomeComponentProps = RouteComponentProps;
 const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
@@ -24,7 +25,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
     axios
       .post('https://fewnu-tontin.onrender.com/auth/login', params)
       .then(function (response) {
-        //   IF EMAIL ALREADY EXISTS
+        //   IF numberphone ALREADY EXISTS
         if (response.data.success === false) {
           toast.error(response.data.error, {
             position: "top-right",
@@ -67,10 +68,10 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
           className="row d-flex justify-content-center align-items-center"
           style={{ height: "100vh" }}
         >
-          <div className="card  bg-secondary text-white mb-3" style={{ maxWidth: "380px" }}>
+          <div className="card  bg-white shadow mb-3" style={{ maxWidth: "380px" }}>
             <div className="col-md-12">
               <div className="card-body">
-                <h3 className="card-title text-center text-white mt-3">
+                <h3 className="card-title text-center text-secondary mt-3">
                   Login Form
                 </h3>
                 <form autoComplete="off" onSubmit={handleSubmit(login)}>
@@ -78,7 +79,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                     <label className="form-label">Telephone</label>
                     <input
                       type="phone"
-                      className="form-control shadow-none"
+                      className="form-control shadow-none input-couleur"
                       id="exampleFormControlInput1"
                       {...register("phoneNumber", { required: "Email is required!" })}
                     />
@@ -92,7 +93,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                     <label className="form-label">Password</label>
                     <input
                       type="password"
-                      className="form-control shadow-none"
+                      className="form-control shadow-none input-couleur"
                       id="exampleFormControlInput2"
                       {...register("password", {
                         required: "Password is required!",
@@ -106,10 +107,10 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                   </div>
                   <div className="text-center mt-4 ">
                     <button
-                      className="btn btn-primary text-center shadow-none mb-3"
+                      className="btn btn-couleur text-center shadow-none mb-3"
                       type="submit"
                     >
-                      Submit
+                     connexion
                     </button>
                     <p className="card-text pb-2">
                       Creer t'on compte? {" "}
