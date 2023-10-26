@@ -10,21 +10,21 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     reset,
     formState: { errors },
   } = useForm();
   const submitData = (data: any) => {
     let params = {
-      firstname: data.firstname,
-      lastname: data.lastname,
+      username: data.username,
+      phoneNumber: data.phoneNumber,
       email: data.email,
       password: data.password,
-      confirmpassword: data.cpassword,
+      // confirmpassword: data.cpassword,
     };
     console.log(data);
     axios
-      .post("http://localhost:3000/signup", params)
+      .post('https://fewnu-tontin.onrender.com/auth/register', params)
       .then(function (response) {
         toast.success(response.data.message, {
           position: "top-right",
@@ -67,16 +67,16 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                 >
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">Firstname</label>
+                      <label className="form-label">Nom d'utilisateur</label>
                       <input
                         type="text"
                         className="form-control form-control-sm"
                         id="exampleFormControlInput1"
-                        {...register("firstname", {
+                        {...register("username", {
                           required: "Firstname is required!",
                         })}
                       />
-                      {errors.firstname && (
+                      {errors.username && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
                           {/* {errors.firstname.message} */}
                         </p>
@@ -85,16 +85,16 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                   </div>
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">Lastname</label>
+                      <label className="form-label">Telephone</label>
                       <input
                         type="text"
                         className="form-control form-control-sm"
                         id="exampleFormControlInput2"
-                        {...register("lastname", {
+                        {...register("phoneNumber", {
                           required: "Lastname is required!",
                         })}
                       />
-                      {errors.lastname && (
+                      {errors.phoneNumber && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
                           {/* {errors.lastname.message} */}
                         </p>
@@ -132,7 +132,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       </p>
                     )}
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="form-label">Confirm Password</label>
                     <input
                       type="password"
@@ -148,10 +148,10 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                     />
                     {errors.cpassword && (
                       <p className="text-danger" style={{ fontSize: 14 }}>
-                        {/* {errors.cpassword.message} */}
+                        {errors.cpassword.message}
                       </p>
                     )}
-                  </div>
+                  </div> */}
                   <div className="text-center mt-4 ">
                     <button
                       className="btn btn-primary text-center shadow-none mb-3"

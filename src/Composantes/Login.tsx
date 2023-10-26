@@ -22,7 +22,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
     console.log(data);
     
     axios
-      .post("http://localhost:3000/login", params)
+      .post('https://fewnu-tontin.onrender.com/auth/login', params)
       .then(function (response) {
         //   IF EMAIL ALREADY EXISTS
         if (response.data.success === false) {
@@ -47,9 +47,9 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
             progress: 0,
             toastId: "my_toast",
           });
-          localStorage.setItem("auth", response.data.token);
+          // localStorage.setItem("auth", response.data.token);
           setTimeout(() => {
-            history.push("/");
+            history.push("/home");
           }, 3000);
         }
       })
