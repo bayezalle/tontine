@@ -50,9 +50,12 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
             toastId: "my_toast",
           });
           localStorage.getItem("auth");
+
+          //deconnection
           setTimeout(() => {
             history.push("/home");
           }, 3000);
+
         }
       })
 
@@ -114,7 +117,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                     </button>
                     <p className="card-text pb-2">
                       Creer t'on compte? {" "}
-                      <Link style={{ textDecoration: "none" }} to={"/"}>
+                      <Link style={{ textDecoration: "none" }} to={"/signup"}>
                         Sign Up
                       </Link>
                     </p>

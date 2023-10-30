@@ -41,7 +41,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
         localStorage.setItem("auth", response.data.token);
         reset();
         setTimeout(() => {
-          history.push("/login");
+          history.push("/");
         }, 3000);
       })
 
@@ -144,7 +144,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                     </button>
                     <p className="card-text">
                       Si vous avaiez un compte? {" "}
-                      <Link style={{ textDecoration: "none" }} to={"/login"}>
+                      <Link style={{ textDecoration: "none" }} to={"/"}>
                         Log In
                       </Link>
                     </p>

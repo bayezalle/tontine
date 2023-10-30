@@ -7,6 +7,13 @@
     color: white;
     border-radius: 50px;
 }
+
+.input-couleur:hover{
+    background-color: #093545;
+    color: white;
+    border-radius: 50px;
+}
+
 .btn-couleur{
     background-color: #20DF7F;
     color: black;
