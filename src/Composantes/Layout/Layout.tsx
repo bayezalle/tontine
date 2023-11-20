@@ -13,7 +13,7 @@ const Layout = ({children, ...props}:props) =>  {
     <div className="container">
       <div className='myApp'>
         <Header />
-        <main className='my-5 py-5 mains'{...props}>{children}</main>
+        <main className='mt-5 mains'{...props}>{children}</main>
         <Footer />
       </div>
     </div>

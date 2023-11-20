@@ -18,7 +18,9 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
 
   const submitData = (data: any) => {
     let params = {
-      username: data.username,
+      firstName:data.firstName,
+      lastName:data.lastName,
+      // username: data.username,
       phoneNumber: data.phoneNumber,
       email: data.email,
       password: data.password,
@@ -69,16 +71,16 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                 >
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">Nom d'utilisateur</label>
+                      <label className="form-label">Fist Name</label>
                       <input
                         type="text"
                         className="form-control form-control-sm input-couleur"
                         id="exampleFormControlInput1"
-                        {...register("username", {
-                          required: "username is required!",
+                        {...register("firstName", {
+                          required: "firstName is required!",
                         })}
                       />
-                      {errors.username && (
+                      {errors.firstName && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
                           {/* {errors.username.message} */}
                         </p>
@@ -86,6 +88,24 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                     </div>
                   </div>
                   <div className="col-md-6">
+                    <div className="">
+                      <label className="form-label">last Name</label>
+                      <input
+                        type="text"
+                        className="form-control form-control-sm input-couleur"
+                        id="exampleFormControlInput1"
+                        {...register("lastName", {
+                          required: "lastName is required!",
+                        })}
+                      />
+                      {errors.lastName && (
+                        <p className="text-danger" style={{ fontSize: 14 }}>
+                          {/* {errors.username.message} */}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="col-md">
                     <div className="">
                       <label className="form-label">Telephone</label>
                       <input

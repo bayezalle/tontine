@@ -11,17 +11,21 @@ const Home: FC<SomeComponentProps> = ({ history }) => {
   };
   return (
     <>
-      {/* <div
-        style={{display: "flex", justifyContent: "space-between", paddingLeft: 50,
-          paddingRight: 50, }}>
-        <div>
-          <button type="submit" className="buttons" onClick={logout}>
-            Deconnexion
-          </button>
-        </div>
-      </div> */}
       <div className="container">
         <Layout />
+        <nav className="navbar fw-bold">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" href="#">Acceuil</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Statistique</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Top progression</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );

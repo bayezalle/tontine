@@ -45,8 +45,8 @@ const Header = () => {
                 <li><a className="dropdown-item" href="#">Another action</a></li>
               </ul>
             </div>
-            <div className="text-white border border-1">
-              <p className="text-center">juin 2023</p>
+            <div className="text-white border border-pill p-1">
+              <span className="text-center">juin 2023</span>
             </div>
         </div>
       </div>
