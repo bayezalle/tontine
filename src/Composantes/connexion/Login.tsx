@@ -66,7 +66,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
 
   return (
     <>
-      <div className="container">
+      <div className="container-fluid login-page">
         <div
           className="row d-flex justify-content-center align-items-center"
           style={{ height: "100vh" }}
@@ -116,9 +116,9 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                      connexion
                     </button>
                     <p className="card-text pb-2">
-                      Creer t'on compte? {" "}
-                      <Link style={{ textDecoration: "none" }} to={"/signup"}>
-                        Sign Up
+                      Pas encore de compte? {" "}
+                      <Link className="fw-bold sign-up" style={{ textDecoration: "none" }} to={"/signup"}>
+                        Inscription
                       </Link>
                     </p>
                   </div>

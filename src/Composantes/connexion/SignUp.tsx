@@ -53,7 +53,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
   };
   return (
     <>
-      <div className="container ">
+      <div className="container-fluid register-page ">
         <div
           className="row d-flex justify-content-center align-items-center"
           style={{ height: "100vh" }}
@@ -163,9 +163,9 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       Inscription
                     </button>
                     <p className="card-text">
-                      Si vous avaiez un compte? {" "}
-                      <Link style={{ textDecoration: "none" }} to={"/"}>
-                        Log In
+                      Vous avez déja un compte? {" "}
+                      <Link className="fw-bold register" style={{ textDecoration: "none" }} to={"/"}>
+                        Connexion
                       </Link>
                     </p>
                   </div>
