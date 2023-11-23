@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import "./home.css";
-import Layout from "../Layout/Layout";
+// import Layout from "../Layout/Layout";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 

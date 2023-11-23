@@ -6,13 +6,15 @@ import Login from "./Composantes/connexion/Login";
 // import PrivateRoute from "./Auth/PrivateRoute";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./Composantes/acceuil/Home";
+import ListeMembere from "./Composantes/member/ListeMembre";
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/home" component={Home} />
+        {/* <Route exact path="/home" component={Home} /> */}
+        <Route exact path="/home" component={ListeMembere} />
         {/* <PrivateRoute exact path="/login" component={Login}/> */}
         {/* <Route exact path="/register" component={SignUp} /> */}
       </Switch>
