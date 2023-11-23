@@ -1,30 +1,24 @@
-import React from "react";
+import React, { FC, useEffect, useState } from "react";
+import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import "./Member.css";
 
-const List = () => {
-  type Person = {
-    prenom: string;
-    nom: string;
-    telephone: string;
-    email: string;
-  };
+const List: FC = () => {
+  const [members, setMembers] = useState([]);
 
-  const Membres: Person[] = [
-    {
-      prenom: "John",
-      nom: "Doe",
-      telephone: "123-456-7890",
-      email: "john.doe@example.com",
-    },
-    {
-      prenom: "Jane",
-      nom: "Doe",
-      telephone: "987-654-3210",
-      email: "jane.doe@example.com",
-    },
-  ];
-
+  useEffect(() => {
+    // Récupérer la liste des utilisateurs
+    axios
+      .get('https://fewnu-tontin.onrender.com/user/profile')
+      .then((response) => {
+        setMembers(response.data);        
+      })
+      .catch((error) => {
+        console.error('Failed to fetch members:', error.message);
+      });
+  }, []); // Le tableau vide comme deuxième argument signifie que ce code s'exécute une seule fois après le montage initial.
+  
+ 
   return (
     <div className="container">
       <div className="row">
@@ -63,12 +57,12 @@ const List = () => {
             </tr>
           </thead>
           <tbody>
-            {Membres.map((membre, index) => (
-              <tr key={index}>
-                <td>{membre.prenom}</td>
-                <td>{membre.nom}</td>
-                <td>{membre.telephone}</td>
-                <td>{membre.email}</td>
+          {members.map((member: any) => (
+              <tr key={member.id}>
+                <td>{member.firstName}</td>
+                <td>{member.lastName}</td>
+                <td>{member.phoneNumber}</td>
+                <td>{member.email}</td>
               </tr>
             ))}
           </tbody>
