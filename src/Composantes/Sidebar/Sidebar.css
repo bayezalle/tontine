@@ -1,0 +1,17 @@
+.side-link a{
+    color: rgb(8, 17, 56);
+    text-decoration: none;
+    font-size: 20px; 
+    font-weight: 500;
+}
+.side-link:hover{
+    background-color: #20df8094;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+#logout{
+    margin-top: 100px;
+    background-color: rgba(255, 0, 0, 0.658);
+    border-radius: 5px;
+    padding-right: 100px;
+}

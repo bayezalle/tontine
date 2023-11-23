@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import "./home.css";
 import Layout from "../Layout/Layout";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 
 type SomeComponentProps = RouteComponentProps;
 const Home: FC<SomeComponentProps> = ({ history }) => {
@@ -10,24 +12,21 @@ const Home: FC<SomeComponentProps> = ({ history }) => {
   //   history.push("/");
   // };
   return (
-     <Layout >
-       <div className="container">
-          {/* <nav className="navbar fw-bold">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="#">Acceuil</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Statistique</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Top progression</a>
-              </li>
-            </ul>
-          </nav> */}
+    <>
+      <div className="container-fluid">
+        <div className="row g-0">
+          <div className="col-2">
+            <Sidebar/>
+          </div>
+          <div className="col-lg-10">
+            <div>
+              <Header/>
+            </div>
+            <div></div>
+          </div>
         </div>
-     </Layout>
-
+      </div>
+    </>
   );
 };
 
