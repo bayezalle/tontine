@@ -5,7 +5,7 @@ import List from './List'
 
 const Member = () => {
   return (
-    <div className="container-fluid px-0">
+    <div className="container-fluid px-0 vh-100">
         <div className="row g-0 ">
           <div className="col-lg-3 col-md-1 col-sm-1 col-xs-1">
             <Sidebar/>

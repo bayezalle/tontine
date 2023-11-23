@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import "./home.css";
-import Layout from "../Layout/Layout";
+// import Layout from "../Layout/Layout";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import Dashboard from "../dashboard/Dashboard";
 
 type SomeComponentProps = RouteComponentProps;
 const Home: FC<SomeComponentProps> = ({ history }) => {
-  const logout = () => {
-    localStorage.clear();
-    history.push("/");
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   history.push("/");
+  // };
   return (
     <>
       <div className="container-fluid px-0">

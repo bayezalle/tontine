@@ -1,6 +1,10 @@
 #sidebar{
     background-color: rgb(8, 17, 56);
     height: 100%;
+
+    @media (max-width: 570px) {
+        height: 50px;
+    }
 }
 .offcanvas-lg{
     background-color: rgb(8, 17, 56);
