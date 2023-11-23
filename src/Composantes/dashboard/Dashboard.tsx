@@ -26,6 +26,7 @@ const Dashboard = () => {
     new Tontine("Saliou Thioune", "Tontine Pirogue", 150000, "2023-02-01"),
     new Tontine("Makhan Diakho", "Tontine balle basket", 1500, "2023-02-01"),
     new Tontine("Serifou Diallo", "Tontine ordinateur", 20000, "2023-02-01"),
+    new Tontine("Tacko Wagué", "Tontine jus", 200, "2023-02-01"),
   ];
   return (
     <div className="container mt-5">
