@@ -1,32 +1,33 @@
-import React, { useState } from "react";
+import React, { FC } from "react";
 import "./Sidebar.css";
 import { FaBars } from "react-icons/fa6";
 
-interface Links {
-  name: string;
-  link?: string;
-}
 
-let linkItems: Links[] = [
-  {
-    name: "Dashboard",
-    link: "/dashboard",
-  },
-  {
-    name: "Membres",
-    link: "/membres",
-  },
-  {
-    name: "Tontines",
-    link: "/tontines",
-  },
-  {
-    name: "Cotisations",
-    link: "/Cotisations",
-  },
-];
 
-const Sidebar: React.FC = () => {
+const Sidebar: FC = () => {
+  interface Links {
+    name: string;
+    link: string;
+  }
+  
+  let linkItems: Links[] = [
+    {
+      name: "Dashboard",
+      link: "/dashboard",
+    },
+    {
+      name: "Membres",
+      link: "/membres",
+    },
+    {
+      name: "Tontines",
+      link: "/tontines",
+    },
+    {
+      name: "Cotisations",
+      link: "/Cotisations",
+    },
+  ];
   return (
     <div id="sidebar" className="vh-100">
       <button

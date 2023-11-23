@@ -1,9 +1,9 @@
-import React from 'react'
+import React,{FC} from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
 import List from './List'
 
-const Member = () => {
+const Member:FC = () => {
   return (
     <div className="container-fluid px-0">
         <div className="row g-0 ">
