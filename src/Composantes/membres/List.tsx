@@ -5,7 +5,16 @@ import "./Member.css";
 
 const List: FC = () => {
   const [members, setMembers] = useState([]);
-
+  interface Links {
+    name: string;
+    link: string;
+  }
+  let linkItems: Links[] = [
+    {
+      name: "+",
+      link: "/signup",
+    }
+  ]
   useEffect(() => {
     // Récupérer la liste des utilisateurs
     axios
@@ -43,7 +52,11 @@ const List: FC = () => {
       <div className="row">
         <div className="d-flex justify-content-between align-items-center">
           <p>Ajouter un(e) membre :</p>
-        <button type="button" className="px-2 rounded text-light fs-5 fw-bold add-member">+</button>
+          <button type="button" className="px-2 rounded text-light fs-5 fw-bold add-member">
+          {linkItems.map((item) => (
+            <a className="nav-link" href={item.link}>{item.name}</a>
+        ))}
+        </button>
         </div>
       </div>
       <div className="row table-responsive">
