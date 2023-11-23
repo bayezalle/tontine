@@ -62,17 +62,17 @@ const Header = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Create New
+              Créer
             </button>
             <ul className="dropdown-menu">
               <li>
                 <a className="dropdown-item" href="#">
-                  Action
+                  Nouvelle Tontine
                 </a>
               </li>
               <li>
                 <a className="dropdown-item" href="#">
-                  Another action
+                Nouveau Membre
                 </a>
               </li>
             </ul>
