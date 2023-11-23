@@ -46,7 +46,7 @@ const List: FC = () => {
         <button type="button" className="px-2 rounded text-light fs-5 fw-bold add-member">+</button>
         </div>
       </div>
-      <div className="row">
+      <div className="row table-responsive">
         <table className="table border table-striped">
           <thead>
             <tr>

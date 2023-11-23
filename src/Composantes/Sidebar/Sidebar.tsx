@@ -29,7 +29,7 @@ const Sidebar: FC = () => {
     },
   ];
   return (
-    <div id="sidebar" className="vh-100">
+    <div id="sidebar" >
       <button
         className="btn menu rounded-0 d-lg-none px-3"
         type="button"
