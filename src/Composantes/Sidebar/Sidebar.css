@@ -1,17 +1,31 @@
-.side-link a{
-    color: rgb(8, 17, 56);
-    text-decoration: none;
-    font-size: 20px; 
-    font-weight: 500;
+#sidebar{
+    background-color: rgb(8, 17, 56);
 }
-.side-link:hover{
-    background-color: #20df8094;
-    padding-right: 10px;
-    border-radius: 5px;
+.offcanvas-lg{
+    background-color: rgb(8, 17, 56);
+}
+.btn-close{
+    color: white;
+}
+.side-link a{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+.side-link{
+    width: 50%;
+}
+.side-link a:hover{
+    border-bottom: solid 2px #20df8094;
 }
 #logout{
-    margin-top: 100px;
-    background-color: rgba(255, 0, 0, 0.658);
+    color: white;
     border-radius: 5px;
-    padding-right: 100px;
+}
+.menu{
+    background-color: rgb(8, 17, 56);
+    color: white;
+    height: 55px;
+    font-weight: bold;
 }
