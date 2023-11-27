@@ -8,7 +8,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./Composantes/acceuil/Home";
 import Member from "./Composantes/membres/Member";
 import Tontine from "./Composantes/tontines/Tontine";
-import ajoutton from "./Composantes/tontines/Ajoutton";
+// import Ajoutton from "./Composantes/tontines/Ajoutton";
+import Ajoutton from "./Composantes/tontines/Ajoutton";
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +20,7 @@ function App() {
         <Route exact path="/dashboard" component={Home} />
         <Route exact path="/membres" component={Member} />
         <Route exact path="/tontines" component={Tontine} />
-        <Route exact path="/ton" component={ajoutton} />
+        <Route exact path="/ton" component={Ajoutton} />
         {/* <Route exact path="/cotisations" component={} /> */}
       </Switch>
     </BrowserRouter>
