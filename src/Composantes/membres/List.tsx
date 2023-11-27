@@ -4,17 +4,16 @@ import { FaSearch } from "react-icons/fa";
 import "./Member.css";
 
 const List: FC = () => {
-  const [members, setMembers] = useState([]);
-  interface Links {
-    name: string;
-    link: string;
-  }
-  let linkItems: Links[] = [
+  const [members, setMembers] = useState<
     {
-      name: "+",
-      link: "/signup",
-    }
-  ]
+      id: string;
+      firstName: string;
+      lastName: string;
+      phoneNumber: number;
+      email: string;
+    }[]
+  >([]);
+
   useEffect(() => {
     // Récupérer la liste des utilisateurs
     axios
@@ -52,11 +51,20 @@ const List: FC = () => {
       <div className="row">
         <div className="d-flex justify-content-between align-items-center">
           <p>Ajouter un(e) membre :</p>
+<<<<<<< HEAD
           <button type="button" className="px-2 rounded text-light fs-5 fw-bold add-member">
           {linkItems.map((item) => (
             <a className="nav-link" href={item.link}>{item.name}</a>
         ))}
         </button>
+=======
+          <button
+            type="button"
+            className="px-2 rounded text-light fs-5 fw-bold add-member"
+          >
+            +
+          </button>
+>>>>>>> eb534cbc4c65aa3f7c2bd235bf358474e173b5b9
         </div>
       </div>
       <div className="row table-responsive">
