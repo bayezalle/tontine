@@ -4,6 +4,13 @@
     position: fixed;
     z-index: 5;
 }
+
+@media (max-width: 700px) {
+    #sidebar {
+        height: 40px;
+    }
+}
+
 .offcanvas-lg{
     background-color: rgb(8, 17, 56);
     padding-right:100px;

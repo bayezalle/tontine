@@ -19,7 +19,13 @@
 .headers{
     width:100%;
     z-index: 1;
+    
   }
+  @media (max-width: 700px) {
+    .headers {
+        left: 55px;
+    }
+}
 
 /* @media screen and (min-width: 901px) and (max-width: 1728px) {
     .headers{
