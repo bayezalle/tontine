@@ -34,7 +34,7 @@ const ListTontine = () => {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row p-3">
         <div className="d-flex justify-content-end gap-5 align-items-baseline">
           <p>Ajouter une tontine :</p>
           <button
