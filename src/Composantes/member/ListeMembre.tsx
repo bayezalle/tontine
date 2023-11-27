@@ -2,7 +2,14 @@ import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 
 const ListeMembere: FC = () => {
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState<
+  {
+    firstName:string,
+    lastName:string,
+    phoneNumber:number,
+    email:string
+  }[]>
+  ([]);
 
   useEffect(() => {
     // Récupérer la liste des utilisateurs
@@ -24,7 +31,7 @@ const ListeMembere: FC = () => {
     <p>Nombre total de membres sur la carte : {totalMembers} membre</p>
       <h2>Liste des Membres</h2>
      <div className="container">
-     {members.map((member: any) => (
+     {members.map((member) => (
      <table className="table">
         <thead>
         <tr>
