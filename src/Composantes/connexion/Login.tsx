@@ -20,7 +20,7 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
       phoneNumber: data.phoneNumber,
       password: data.password,
     };
-    console.log(data);
+    // console.log(data);
     
     axios
       .post('https://fewnu-tontin.onrender.com/auth/login', params)
@@ -86,11 +86,12 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                       id="exampleFormControlInput1"
                       {...register("phoneNumber", { required: "Email is required!" })}
                     />
-                    {errors.email && (
+                   {errors.phoneNumber && typeof errors.phoneNumber === 'object' && (
                       <p className="text-danger" style={{ fontSize: 14 }}>
-                        {/* {errors.email.message} */}
+                        {(errors.phoneNumber as { message?: string }).message}
                       </p>
                     )}
+
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Password</label>
@@ -102,11 +103,13 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                         required: "Password is required!",
                       })}
                     />
-                    {errors.password && (
+                  
+                  {errors.password && typeof errors.password === 'object' && (
                       <p className="text-danger" style={{ fontSize: 14 }}>
-                        {/* {errors.password.message} */}
+                        {(errors.password as { message?: string }).message}
                       </p>
                     )}
+
                   </div>
                   <div className="text-center mt-4 ">
                     <button
@@ -115,12 +118,12 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                     >
                      connexion
                     </button>
-                    <p className="card-text pb-2">
+                    {/* <p className="card-text pb-2">
                       Pas encore de compte? {" "}
                       <Link className="fw-bold sign-up" style={{ textDecoration: "none" }} to={"/signup"}>
                         Inscription
                       </Link>
-                    </p>
+                    </p> */}
                   </div>
                 </form>
               </div>

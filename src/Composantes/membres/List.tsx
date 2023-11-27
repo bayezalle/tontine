@@ -48,7 +48,7 @@ const List: FC = () => {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row p-3">
         <div className="d-flex justify-content-between align-items-center">
           <p>Ajouter un(e) membre :</p>
           <button
