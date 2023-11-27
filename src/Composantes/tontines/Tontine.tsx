@@ -1,11 +1,13 @@
-import React,{FC} from 'react'
+import React from 'react'
+import './Tontine.css'
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
-import List from './List'
+import ListTontine from './ListTontine'
 
-const Member:FC = () => {
+const Tontine = () => {
   return (
-    <div className="container-fluid px-0 vh-100 mt-5">
+    <div>
+      <div className="container-fluid px-0">
         <div className="row g-0 ">
           <div className="col-lg-3 col-md-1 col-sm-1 col-xs-1">
             <Sidebar/>
@@ -15,12 +17,13 @@ const Member:FC = () => {
               <Header/>
             </div>
             <div>
-              <List/>
+              <ListTontine/>
             </div>
           </div>
         </div>
       </div>
+    </div>
   )
 }
 
-export default Member
+export default Tontine

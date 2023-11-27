@@ -4,21 +4,28 @@ import { FaSearch } from "react-icons/fa";
 import "./Member.css";
 
 const List: FC = () => {
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState<
+    {
+      id: string;
+      firstName: string;
+      lastName: string;
+      phoneNumber: number;
+      email: string;
+    }[]
+  >([]);
 
   useEffect(() => {
     // Récupérer la liste des utilisateurs
     axios
-      .get('https://fewnu-tontin.onrender.com/user/profile')
+      .get("https://fewnu-tontin.onrender.com/user/profile")
       .then((response) => {
-        setMembers(response.data);        
+        setMembers(response.data);
       })
       .catch((error) => {
-        console.error('Failed to fetch members:', error.message);
+        console.error("Failed to fetch members:", error.message);
       });
   }, []); // Le tableau vide comme deuxième argument signifie que ce code s'exécute une seule fois après le montage initial.
-  
- 
+
   return (
     <div className="container">
       <div className="row">
@@ -41,9 +48,14 @@ const List: FC = () => {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-end gap-5 align-items-baseline">
           <p>Ajouter un(e) membre :</p>
-        <button type="button" className="px-2 rounded text-light fs-5 fw-bold add-member">+</button>
+          <button
+            type="button"
+            className="px-2 rounded text-light fs-5 fw-bold add-member"
+          >
+            +
+          </button>
         </div>
       </div>
       <div className="row table-responsive">
@@ -57,7 +69,7 @@ const List: FC = () => {
             </tr>
           </thead>
           <tbody>
-          {members.map((member: any) => (
+            {members.map((member) => (
               <tr key={member.id}>
                 <td>{member.firstName}</td>
                 <td>{member.lastName}</td>

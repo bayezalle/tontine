@@ -55,7 +55,7 @@ const Sidebar: FC = () => {
             aria-label="Close"
           ></button>
         </div>
-        <div className="offcanvas-body pt-5 ps-5">
+        <div className="offcanvas-body pt-5 ps-5 mt-5">
           <ul className="list-unstyled">
         {linkItems.map((item, index) => (
           <li className="mb-3 side-link" key={index}>
