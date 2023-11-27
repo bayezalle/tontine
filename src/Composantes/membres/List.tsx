@@ -70,7 +70,7 @@ const List: FC = () => {
             </tr>
           </thead>
           <tbody>
-          {members.map((member: any) => (
+          {members.map((member) => (
               <tr key={member.id}>
                 <td>{member.firstName}</td>
                 <td>{member.lastName}</td>
