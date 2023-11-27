@@ -56,7 +56,7 @@ const Dashboard: FC = () => {
   }, []);
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 pt-5">
       <div className="row gap-1 mb-5 px-3">
         <div className="col-lg-5 col-md-5 col-sm-5 card border-2 shadow p-3">
           <p className="title-card">Nonbre de tontines :</p>

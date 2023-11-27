@@ -17,7 +17,7 @@ const Header = () => {
     }
   }, []);
   return (
-    <div className="headers ">
+    <div className="headers fixed-top">
       <div className="d-flex header justify-content-end pe-5">
         <div className="d-flex justify-content-center align-items-center p-2">
           <img src={user} alt="user" className="img-fluid img" />
