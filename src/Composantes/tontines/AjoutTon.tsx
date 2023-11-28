@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AjoutTon = () => {
   const [nomTontine, setNomTontine] = useState("");
-  const [montantTontine, setMontantTontine] = useState(0);
+  const [montantTontine, setMontantTontine] = useState(Number);
   const [jourCotisation, setJourCotisation] = useState("");
   const [addedSuccessfully, setAddedSuccessfully] = useState(false);
 
@@ -72,7 +72,7 @@ const AjoutTon = () => {
             onChange={(e) => setMontantTontine(Number(e.target.value))}
             />
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label className="form-label">Jour Cotisation</label>
           <input
             type="text"
@@ -80,7 +80,19 @@ const AjoutTon = () => {
             value={jourCotisation}
             onChange={(e) => setJourCotisation(e.target.value)}
           />
-        </div>
+        </div> */}
+        <select className="form-select" aria-label="Default select example" 
+        value={jourCotisation}
+        onChange={(e) => setJourCotisation(e.target.value)}>
+            <option selected>Ajouter un jour de cotisation</option>
+            <option value="Lundi">Lundi</option>
+            <option value="Mardi">Mardi</option>
+            <option value="Mercredi">Mercredi</option>
+            <option value="Jeudi">Jeudi</option>
+            <option value="Vendredi">Vendredi</option>
+            <option value="Samrdi">Samedi</option>
+            <option value="Dimanche">Dimanche</option>
+        </select>
         <button type="submit" className="btn btn-primary">
           Enregistrer
         </button>

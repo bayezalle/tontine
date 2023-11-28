@@ -13,6 +13,7 @@ const List: FC = () => {
       email: string;
     }[]
   >([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     // Récupérer la liste des utilisateurs
@@ -26,6 +27,17 @@ const List: FC = () => {
       });
   }, []); // Le tableau vide comme deuxième argument signifie que ce code s'exécute une seule fois après le montage initial.
   
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filtrer les membres en fonction du terme de recherche
+  const filteredMembers = members.filter((member) =>
+    member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    member.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    member.phoneNumber.toString().includes(searchTerm) ||
+    member.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
  
   return (
     <div className="container">
@@ -44,6 +56,8 @@ const List: FC = () => {
               placeholder="Nom"
               aria-label="Nom"
               aria-describedby="basic-addon1"
+              value={searchTerm}
+              onChange={handleSearch}
             />
           </div>
         </div>
@@ -70,15 +84,15 @@ const List: FC = () => {
             </tr>
           </thead>
           <tbody>
-          {members.map((member) => (
-              <tr key={member.id}>
-                <td>{member.firstName}</td>
-                <td>{member.lastName}</td>
-                <td>{member.phoneNumber}</td>
-                <td>{member.email}</td>
-              </tr>
-            ))}
-          </tbody>
+        {filteredMembers.map((member) => (
+          <tr key={member.id}>
+            <td>{member.firstName}</td>
+            <td>{member.lastName}</td>
+            <td>{member.phoneNumber}</td>
+            <td>{member.email}</td>
+          </tr>
+        ))}
+      </tbody>
         </table>
       </div>
     </div>
