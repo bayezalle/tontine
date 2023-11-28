@@ -5,32 +5,61 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Header = () => {
-  const [user, setUser] = useState<
-  {
+  const [user, setUser] = useState<{
     firstName: string;
     lastName: string;
-    phoneNumber:number;
-  } | null
->(null);
+    phoneNumber: number;
+    role: string;
+  } | null>(null);
 
   useEffect(() => {
-    // Faites un appel API pour récupérer les informations de l'utilisateur connecté
-    axios.get('https://fewnu-tontin.onrender.com/user/profile', {
-      headers: {
-        Authorization: 'Bearer YOUR_JWT_TOKEN',
-      },
-    })
-    .then((response) => {
-      setUser(response.data[0]);
-    })
-    .catch((error) => {
-      console.error('Failed to fetch user profile:', error.message);
-    });
+    // Faites un appel API pour récupérer la liste des utilisateurs
+    axios
+      .get('https://fewnu-tontin.onrender.com/user/profile', {
+        headers: {
+          Authorization: 'Bearer YOUR_JWT_TOKEN',
+        },
+      })
+      .then((response) => {
+        // Supposons que vous ayez une fonction pour récupérer l'utilisateur connecté
+        const connectedUser = getConnectedUser(response.data);
+
+        // Mettez à jour l'état avec les informations de l'utilisateur connecté
+        setUser(connectedUser);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch user profiles:', error.message);
+      });
   }, []);
+
+  const getConnectedUser = (users: any[]): {
+    firstName: string;
+    lastName: string;
+    phoneNumber: number;
+    role: string;
+  } | null => {
+
+    // Supposons que votre JWT contient l'ID de l'utilisateur connecté
+    // const connectedUserId = '65437592c5beb95c8dd 86247';
+    const connectedUserId = users[10]._id;
+
+    // Recherchez l'utilisateur dans la liste en fonction de son ID
+    const connectedUser = users.find((user) => user._id === connectedUserId);
+
+    return connectedUser
+      ? {
+          firstName: connectedUser.firstName,
+          lastName: connectedUser.lastName,
+          phoneNumber: connectedUser.phoneNumber, 
+          role: connectedUser.role,
+        }
+      : null;
+  };
 
   // if (!user) {
   //   return <div>Loading...</div>;
   // }
+  
   return (
     <div className="headers fixed-top">
       <div className="d-flex header justify-content-end pe-5">
@@ -57,6 +86,11 @@ const Header = () => {
               <li>
                 <a className="dropdown-item" href="#">
                 {user && user.phoneNumber}
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                {user && user.role}
                 </a>
               </li>
             </ul>

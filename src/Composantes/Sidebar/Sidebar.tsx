@@ -56,10 +56,10 @@ const Sidebar: FC = () => {
           ></button>
         </div>
         <div className="offcanvas-body pt-5 ps-5 mt-5">
-          <ul className="list-unstyled">
+          <ul className="list-unstyled mt-3">
         {linkItems.map((item, index) => (
-          <li className="mb-3 side-link" key={index}>
-            <a href={item.link}>{item.name}</a>
+          <li className="mb-4 side-link" key={index}>
+            <a href={item.link} className="fw-bold">{item.name}</a>
           </li>
         ))}
         <li className="mt-5 side-link">
