@@ -72,15 +72,6 @@ const AjoutTon = () => {
             onChange={(e) => setMontantTontine(Number(e.target.value))}
             />
         </div>
-        {/* <div className="mb-3">
-          <label className="form-label">Jour Cotisation</label>
-          <input
-            type="text"
-            className="form-control"
-            value={jourCotisation}
-            onChange={(e) => setJourCotisation(e.target.value)}
-          />
-        </div> */}
         <select className="form-select" aria-label="Default select example" 
         value={jourCotisation}
         onChange={(e) => setJourCotisation(e.target.value)}>
@@ -104,35 +95,3 @@ const AjoutTon = () => {
 
 export default AjoutTon;
 
-{/* <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nom Tontine</label>
-          <input
-            type="text"
-            className="form-control"
-            value={nomTontine}
-            onChange={(e) => setNomTontine(e.target.value)}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Montant</label>
-          <input
-            type="number"
-            className="form-control"
-            value={montantTontine}
-            onChange={(e) => setMontantTontine(Number(e.target.value))}
-            />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Jour Cotisation</label>
-          <input
-            type="text"
-            className="form-control"
-            value={jourCotisation}
-            onChange={(e) => setJourCotisation(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Enregistrer
-        </button>
-      </form> */}

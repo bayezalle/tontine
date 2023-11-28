@@ -11,7 +11,11 @@ const Dashboard: FC = () => {
       tontine: string;
       cotisation: string;
       createdAt: string;
-      user: string;
+        user:{
+          firstName:string;
+          lastName:string;
+          phoneNumber:number;
+        };
     }[]
   >([]);
 
@@ -74,7 +78,9 @@ const Dashboard: FC = () => {
           <table className="table table-striped border border-2 shadow">
             <thead>
               <tr className="head">
-                <th>Membre</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>telephone</th>
                 <th>Nom de la Tontine</th>
                 <th>Montant</th>
                 <th>Date</th>
@@ -83,7 +89,9 @@ const Dashboard: FC = () => {
             <tbody>
               {cotisation.map((cotisation) => (
                 <tr key={cotisation.id}>
-                  <td>{cotisation.user}</td>
+                  <td>{cotisation.user.firstName}</td>
+                  <td>{cotisation.user.lastName}</td>
+                  <td>{cotisation.user.phoneNumber}</td>
                   <td>{cotisation.tontine}</td>
                   <td>{cotisation.cotisation} Fcfa</td>
                   <td>{cotisation.createdAt}</td>

@@ -1,84 +1,65 @@
 import React from "react";
 import "./header.css";
-import user from "../../assets/Ellipse 9.png";
+import user1 from "../../assets/Ellipse 9.png";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Header = () => {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState<
+  {
+    firstName: string;
+    lastName: string;
+    phoneNumber:number;
+  } | null
+>(null);
 
   useEffect(() => {
-    // Récupérez le nom de l'utilisateur depuis le localStorage
-    const storedUsername = localStorage.getItem("userData");
-
-    // Assurez-vous que les données existent et sont valides
-    if (storedUsername) {
-      const userData = JSON.parse(storedUsername);
-      setUsername(userData.user.username); // Assurez-vous que la propriété "username" existe dans vos données utilisateur
-    }
+    // Faites un appel API pour récupérer les informations de l'utilisateur connecté
+    axios.get('https://fewnu-tontin.onrender.com/user/profile', {
+      headers: {
+        Authorization: 'Bearer YOUR_JWT_TOKEN',
+      },
+    })
+    .then((response) => {
+      setUser(response.data[0]);
+    })
+    .catch((error) => {
+      console.error('Failed to fetch user profile:', error.message);
+    });
   }, []);
+
+  // if (!user) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <div className="headers fixed-top">
       <div className="d-flex header justify-content-end pe-5">
         <div className="d-flex justify-content-center align-items-center p-2">
-          <img src={user} alt="user" className="img-fluid img" />
+          <img src={user1} alt="user" className="img-fluid img" />
           <div className="btn-group">
-            <button
-              type="button"
-              className="btn text-white dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Ndiaga Sall
+            <button className="btn  btn-sm" type="button">
+              {/* Small split button */}
             </button>
-            <ul className="dropdown-menu">
+            <button type="button" className="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span className="visually-hidden">Toggle Dropdown</span>
+            </button>
+           <ul className="dropdown-menu">
               <li>
                 <a className="dropdown-item" href="#">
-                  Action
+                {user && user.firstName}
                 </a>
               </li>
               <li>
                 <a className="dropdown-item" href="#">
-                  Another action
+                 {user && user.lastName}
                 </a>
               </li>
               <li>
                 <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Separated link
+                {user && user.phoneNumber}
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
-        <div className="d-flex justify-content-between align-items-center gap-2">
-          <div className="btn-group">
-            <button
-              type="button"
-              className="btn border border-1 text-white dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Créer
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Nouvelle Tontine
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                Nouveau Membre
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="text-white border border-pill p-1">
-            <span className="text-center">juin 2023</span>
           </div>
         </div>
       </div>
