@@ -178,24 +178,25 @@ const ListTontine = () => {
             value={montantTontine}
             onChange={(e) => setMontantTontine(Number(e.target.value))}
             />
-        </div>
-        <select className="form-select" aria-label="Default select example" 
-        value={jourCotisation}
-        onChange={(e) => setJourCotisation(e.target.value)}>
-            <option selected>Ajouter un jour de cotisation</option>
-            <option value="Lundi">Lundi</option>
-            <option value="Mardi">Mardi</option>
-            <option value="Mercredi">Mercredi</option>
-            <option value="Jeudi">Jeudi</option>
-            <option value="Vendredi">Vendredi</option>
-            <option value="Samrdi">Samedi</option>
-            <option value="Dimanche">Dimanche</option>
-        </select>
-        <button type="submit" className="btn btn-primary mt-3">
-          Enregistrer
-        </button>
-      </form>
-      </div>
+            </div>
+            <select className="form-select" aria-label="Default select example" 
+            value={jourCotisation}
+            onChange={(e) => setJourCotisation(e.target.value)}>
+                <option selected>Ajouter un jour de cotisation</option>
+                <option value="Chaque jour">Chaque jour</option>
+                <option value="Lundi">Lundi</option>
+                <option value="Mardi">Mardi</option>
+                <option value="Mercredi">Mercredi</option>
+                <option value="Jeudi">Jeudi</option>
+                <option value="Vendredi">Vendredi</option>
+                <option value="Samrdi">Samedi</option>
+                <option value="Dimanche">Dimanche</option>
+            </select>
+            <button type="submit" className="btn btn-primary mt-3">
+              Enregistrer
+            </button>
+              </form>
+              </div>
                 </div>
               </div>
             </div>
