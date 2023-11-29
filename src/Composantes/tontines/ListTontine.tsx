@@ -157,67 +157,45 @@ const ListTontine = () => {
                     aria-label="Close"
                   ></button>
                 </div>
-                <div className="modal-body px-3">
-                  <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label"
-                      >
-                        Nom tontine
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        value={nomTontine}
-                        onChange={(e) => setNomTontine(e.target.value)}
-                      />
-                    </div>
 
-                    <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputPassword1"
-                        className="form-label"
-                      >
-                        Montant global
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="exampleInputnumber1"
-                        value={montantTontine}
-                        onChange={(e) => setMontantTontine(Number(e.target.value))}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputPassword1"
-                        className="form-label"
-                      >
-                        Jour de cotisation
-                      </label>
-                      <select className="form-select" aria-label="Default select example" 
-                        value={jourCotisation}
-                        onChange={(e) => setJourCotisation(e.target.value)}>
-                            <option selected>Ajouter un jour de cotisation</option>
-                            <option selected>Chaque jour</option>
-                            <option value="Lundi">Lundi</option>
-                            <option value="Mardi">Mardi</option>
-                            <option value="Mercredi">Mercredi</option>
-                            <option value="Jeudi">Jeudi</option>
-                            <option value="Vendredi">Vendredi</option>
-                            <option value="Samrdi">Samedi</option>
-                            <option value="Dimanche">Dimanche</option>
-                        </select>
-                    </div>
-                    <div className="modal-footer">
-                  <button type="button" className="btn btn-success">
-                    Ajouter
-                  </button>
-                </div>
-                  </form>
+                <div className="modal-body px-3">
+                  <div className="container">
+        <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label">Nom Tontine</label>
+          <input
+            type="text"
+            className="form-control"
+            value={nomTontine}
+            onChange={(e) => setNomTontine(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Montant</label>
+          <input
+            type="number"
+            className="form-control"
+            value={montantTontine}
+            onChange={(e) => setMontantTontine(Number(e.target.value))}
+            />
+        </div>
+        <select className="form-select" aria-label="Default select example" 
+        value={jourCotisation}
+        onChange={(e) => setJourCotisation(e.target.value)}>
+            <option selected>Ajouter un jour de cotisation</option>
+            <option value="Lundi">Lundi</option>
+            <option value="Mardi">Mardi</option>
+            <option value="Mercredi">Mercredi</option>
+            <option value="Jeudi">Jeudi</option>
+            <option value="Vendredi">Vendredi</option>
+            <option value="Samrdi">Samedi</option>
+            <option value="Dimanche">Dimanche</option>
+        </select>
+        <button type="submit" className="btn btn-primary mt-3">
+          Enregistrer
+        </button>
+      </form>
+      </div>
                 </div>
               </div>
             </div>
