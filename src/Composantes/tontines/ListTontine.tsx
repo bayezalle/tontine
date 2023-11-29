@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
 
 
 // Ajoutez une interface pour représenter un participant
@@ -22,6 +23,9 @@ interface Tontine {
 const ListTontine = () => {
   const [nomTontine, setNomTontine] = useState("");
   const [montantTontine, setMontantTontine] = useState(Number);
+  const [debut, setDebut] = useState(""); // Ajout de l'état pour 'debut'
+  const [fin, setFin] = useState(""); // Ajout de l'état pour 'fin'
+  const [nbMembre, setNbMembre] = useState("");
   const [jourCotisation, setJourCotisation] = useState("");
   const [addedSuccessfully, setAddedSuccessfully] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajout de l'état pour le terme de recherche
@@ -57,7 +61,7 @@ const ListTontine = () => {
     } catch (error) {
       // Gérez les erreurs ici
       console.error("Erreur lors de l'ajout de la tontine :", error);
-  
+   
       // Affichez un message d'erreur convivial à l'utilisateur
       alert("Une erreur s'est produite lors de l'ajout de la tontine. Veuillez réessayer plus tard.");
     }
@@ -162,7 +166,7 @@ const ListTontine = () => {
                   <div className="container">
         <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Nom Tontine</label>
+          <label className="form-label fw-bold">Nom Tontine</label>
           <input
             type="text"
             className="form-control"
@@ -171,7 +175,7 @@ const ListTontine = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Montant</label>
+          <label className="form-label fw-bold">Montant</label>
           <input
             type="number"
             className="form-control"
@@ -179,6 +183,34 @@ const ListTontine = () => {
             onChange={(e) => setMontantTontine(Number(e.target.value))}
             />
             </div>
+        <div className="mb-3">
+          <label className="form-label fw-bold">Date Debut</label>
+          <input
+            type="date"
+            className="form-control"
+            value={debut}
+            onChange={(e) => setDebut(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label fw-bold">Date Fin</label>
+          <input
+            type="date"
+            className="form-control"
+            value={fin}
+            onChange={(e) => setFin(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label fw-bold">Total Membre</label>
+          <input
+            type="number"
+            className="form-control"
+            value={nbMembre}
+            onChange={(e) => setNbMembre(e.target.value)}
+          />
+        </div>
+        
             <select className="form-select" aria-label="Default select example" 
             value={jourCotisation}
             onChange={(e) => setJourCotisation(e.target.value)}>
@@ -203,11 +235,16 @@ const ListTontine = () => {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-3 ">
         {filteredTontines.map((tontine) => (
           <div className="col-lg-6 col-md-6 col-sm-12 mb-3" key={tontine.id}>
              <div className="card p-3 border-2 shadow">
-            <h4 className="fw-bold">{tontine.tontine}</h4>
+            <div className="d-flex justify-content-between align-itemes-center mb-2">
+              <h4 className="fw-bold">{tontine.tontine}</h4>
+              <button className="btn btn-sm rounded text-light add-member">
+                <FaUserPlus/>
+                </button>
+            </div>
             <div className="row d-flex justify-content-between align-items-center">
               <div className="col-md-4 mb-2">
                 <span className="fw-bold">Montant Global</span><br/><span>{tontine.somme} Fcfa</span>
