@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./Composantes/acceuil/Home";
 import Member from "./Composantes/membres/Member";
 import Tontine from "./Composantes/tontines/Tontine";
+import Cotisation from "./Composantes/cotisation/Cotisation";
 // import AjoutTon from "./Composantes/tontines/AjoutTon";
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <Route exact path="/dashboard" component={Home} />
         <Route exact path="/membres" component={Member} />
         <Route exact path="/tontines" component={Tontine} />
+        <Route exact path="/cotisations" component={Cotisation} />
         {/* <Route exact path="/" component={AjoutTon} /> */}
-        {/* <Route exact path="/cotisations" component={} /> */}
       </Switch>
     </BrowserRouter>
   );
