@@ -31,7 +31,7 @@ const ListTontine: React.FC = () => {
   const [addedSuccessfully, setAddedSuccessfully] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajout de l'état pour le terme de recherche
   const [tontines, setTontines] = useState<Tontine[]>([]); // Ajout de l'état pour stocker les tontines
-  const [selectedTontine, setSelectedTontine] = useState<Tontine | null>(null);
+  // const [selectedTontine, setSelectedTontine] = useState<Tontine | null>(null);
 
   const history = useHistory();
 
@@ -99,11 +99,11 @@ const ListTontine: React.FC = () => {
         console.error("Erreur lors de la récupération des tontines :", error);
       }
     };
-
     // Appel de la fonction pour récupérer les tontines
     fetchTontines();
   }, [addedSuccessfully]);
 
+    //conter le nombre de participant
   const countParticipants = (tontine: Tontine): number => {
     // Vous pouvez utiliser tontine.participants ou ajuster selon votre structure de données
     return tontine.participants ? tontine.participants.length : 0;
@@ -111,7 +111,7 @@ const ListTontine: React.FC = () => {
 
   const handleAjouterParticipant = (e: React.MouseEvent<HTMLButtonElement>, tontine: Tontine) => {
     e.preventDefault();
-    setSelectedTontine(tontine); 
+    // setSelectedTontine(tontine); 
     history.push('/info-user');
   };
   
@@ -230,7 +230,7 @@ const ListTontine: React.FC = () => {
                 <option value="Mercredi">Mercredi</option>
                 <option value="Jeudi">Jeudi</option>
                 <option value="Vendredi">Vendredi</option>
-                <option value="Samrdi">Samedi</option>
+                 <option value="Samrdi">Samedi</option>
                 <option value="Dimanche">Dimanche</option>
             </select>
             <button type="submit" className="btn btn-primary mt-3">

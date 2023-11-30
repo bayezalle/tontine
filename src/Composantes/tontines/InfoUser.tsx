@@ -1,59 +1,50 @@
-// InfoUser.tsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-interface Member {
-  id: number;
-  fisrtName:string;
+interface Participant {
+  _id: string;
+  firstName: string;
   lastName: string;
-  phoneNumber:number;
+  phoneNumber: number;
+  email: string;
 }
 
-interface Tontine {
-  id: number;
-  tontine: string;
-  somme: number;
-  cotisationDay: string;
-  // Autres propriétés si nécessaire
-}
-
-const InfoUser: React.FC<{ selectedTontine: Tontine | null }> = ({ selectedTontine }) => {
-  const [nonParticipants, setNonParticipants] = useState<Member[]>([]);
+const InfoUser: React.FC = () => {
+  const [nonParticipants, setNonParticipants] = useState<Participant[]>([]);
 
   useEffect(() => {
-    if (selectedTontine) {
-      // Effectuez une requête pour obtenir la liste des membres non participants
-      const fetchNonParticipants = async () => {
-        try {
-          // Utilisez la logique pour déterminer les non participants en comparant avec selectedTontine.participantsActuels
-          const response = await axios.get(`https://fewnu-tontin.onrender.com/tontines/getTontines/${selectedTontine.id}`);
-          setNonParticipants(response.data.patrticipants);
-        } catch (error) {
-          console.error('Erreur lors de la récupération des non participants :', error);
-        }
-      };
-      // Appelez la fonction pour récupérer les non participants
-      fetchNonParticipants();
-    }
-  }, [selectedTontine]); // Assurez-vous de définir les dépendances correctes selon vos besoins
+    // Effectuez une requête pour obtenir la liste des membres non participants
+    const fetchNonParticipants = async () => {
+      try {
+        const response = await axios.get('https://fewnu-tontin.onrender.com/tontines/getTontines');
+        setNonParticipants(response.data);
+        console.log(response.data[5].somme);
+        console.log(response.data[5].tontine);
+        console.log(response.data[1].somme);
+        
+      } catch (error) {
+        console.error('Erreur lors de la récupération des non participants :', error);
+      }
+    };
 
-  const participer = (userId: number) => {
+    // Appelez la fonction pour récupérer les non participants
+    fetchNonParticipants();
+  }, []); // Assurez-vous de définir les dépendances correctes selon vos besoins
+
+  const participer = (userId: string) => {
     // Logique pour faire participer le membre
     // ...
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Liste des membres non participants</h1>
       {nonParticipants.length > 0 ? (
         <ul>
-          {nonParticipants.map((participant) => (
-            <li key={participant.id}>
-              <span>{participant.fisrtName}</span>
-              <span>{participant.lastName}</span>
-              <span>{participant.phoneNumber}</span>
-              <button onClick={() => participer(participant.id)}>Participer</button>
+          {nonParticipants.map((participants) => (
+            <li key={participants._id}>
+              <span>{participants.firstName} {participants.lastName}</span>
+              <button onClick={() => participer(participants._id)}>Participer</button>
             </li>
           ))}
         </ul>

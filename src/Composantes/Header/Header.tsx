@@ -41,7 +41,7 @@ const Header = () => {
 
     // Supposons que votre JWT contient l'ID de l'utilisateur connecté
     // const connectedUserId = '65437592c5beb95c8dd 86247';
-    const connectedUserId = users[10]._id;
+    const connectedUserId = users[0]._id;
 
     // Recherchez l'utilisateur dans la liste en fonction de son ID
     const connectedUser = users.find((user) => user._id === connectedUserId);
