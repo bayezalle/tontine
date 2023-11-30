@@ -40,3 +40,9 @@
     height: 55px;
     font-weight: bold;
 }
+.menu:hover{
+    background-color: rgb(8, 17, 56);
+    color: white;
+    height: 55px;
+    font-weight: bold;
+}

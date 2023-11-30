@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import "./Sidebar.css";
 import { FaBars } from "react-icons/fa6";
+import { BsCaretLeftSquare } from "react-icons/bs";
 
 
 
@@ -53,7 +54,9 @@ const Sidebar: FC = () => {
             data-bs-dismiss="offcanvas"
             data-bs-target="#offcanvasResponsive"
             aria-label="Close"
-          ></button>
+          >
+            <BsCaretLeftSquare className="fs-2 text-white"/>
+          </button>
         </div>
         <div className="offcanvas-body pt-5 ps-5 mt-5">
           <ul className="list-unstyled mt-3">
