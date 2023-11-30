@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import "./Tontine.css"
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
+import { useHistory } from 'react-router-dom';
 
 
 // Ajoutez une interface pour représenter un participant
 interface Participant {
   id: number;
   nom: string;
-  // Ajoutez d'autres propriétés si nécessaire
 }
 // Définissez le type pour une tontine
 interface Tontine {
@@ -17,19 +18,22 @@ interface Tontine {
   somme: number;
   cotisationDay: string;
   participants: Participant[];
-  // Ajoutez d'autres propriétés si nécessaire
+  participantsActuels: number[];
 }
 
-const ListTontine = () => {
+const ListTontine: React.FC = () => {
   const [nomTontine, setNomTontine] = useState("");
   const [montantTontine, setMontantTontine] = useState(Number);
-  const [debut, setDebut] = useState(""); // Ajout de l'état pour 'debut'
-  const [fin, setFin] = useState(""); // Ajout de l'état pour 'fin'
+  const [debut, setDebut] = useState(""); // Ajout de l'état pour 'date debut'
+  const [fin, setFin] = useState(""); // Ajout de l'état pour 'date fin'
   const [nbMembre, setNbMembre] = useState("");
   const [jourCotisation, setJourCotisation] = useState("");
   const [addedSuccessfully, setAddedSuccessfully] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajout de l'état pour le terme de recherche
   const [tontines, setTontines] = useState<Tontine[]>([]); // Ajout de l'état pour stocker les tontines
+  const [selectedTontine, setSelectedTontine] = useState<Tontine | null>(null);
+
+  const history = useHistory();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -101,11 +105,17 @@ const ListTontine = () => {
   }, [addedSuccessfully]);
 
   const countParticipants = (tontine: Tontine): number => {
-    // Ajoutez votre logique pour calculer le nombre de participants ici
-    // Par exemple, si le nombre de participants est stocké dans une propriété participants de votre objet tontine
     // Vous pouvez utiliser tontine.participants ou ajuster selon votre structure de données
     return tontine.participants ? tontine.participants.length : 0;
   };
+
+  const handleAjouterParticipant = (e: React.MouseEvent<HTMLButtonElement>, tontine: Tontine) => {
+    e.preventDefault();
+    setSelectedTontine(tontine); 
+    history.push('/info-user');
+  };
+  
+  
 
   return (
     <div className="container pt-5 mt-3">
@@ -161,7 +171,6 @@ const ListTontine = () => {
                     aria-label="Close"
                   ></button>
                 </div>
-
                 <div className="modal-body px-3">
                   <div className="container">
         <form onSubmit={handleSubmit}>
@@ -241,9 +250,10 @@ const ListTontine = () => {
              <div className="card p-3 border-2 shadow">
             <div className="d-flex justify-content-between align-itemes-center mb-2">
               <h4 className="fw-bold">{tontine.tontine}</h4>
-              <button className="btn btn-sm rounded text-light add-member">
-                <FaUserPlus/>
-                </button>
+              <button className="btn btn-sm rounded btn-ton" onClick={(e) => handleAjouterParticipant(e, tontine)}>
+                <FaUserPlus />
+              </button>
+
             </div>
             <div className="row d-flex justify-content-between align-items-center">
               <div className="col-md-4 mb-2">
