@@ -24,6 +24,34 @@ const Header: React.FC = () => {
     }
   }, []);
 
+  const getConnectedUser = (users: any[]): {
+    firstName: string;
+    lastName: string;
+    phoneNumber: number;
+    role: string;
+  } | null => {
+
+    // Supposons que votre JWT contient l'ID de l'utilisateur connecté
+    // const connectedUserId = '65437592c5beb95c8dd 86247';
+    const connectedUserId = users[0]._id;
+
+    // Recherchez l'utilisateur dans la liste en fonction de son ID
+    const connectedUser = users.find((user) => user._id === connectedUserId);
+
+    return connectedUser
+      ? {
+          firstName: connectedUser.firstName,
+          lastName: connectedUser.lastName,
+          phoneNumber: connectedUser.phoneNumber, 
+          role: connectedUser.role,
+        }
+      : null;
+  };
+
+  // if (!user) {
+  //   return <div>Loading...</div>;
+  // }
+  
   return (
     <div className="headers fixed-top">
       <div className="d-flex header justify-content-end pe-5">

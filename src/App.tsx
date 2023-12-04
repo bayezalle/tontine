@@ -1,4 +1,4 @@
-// import React from "react";
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import SignUp from "./Composantes/connexion/SignUp";
@@ -9,8 +9,11 @@ import Home from "./Composantes/acceuil/Home";
 import Member from "./Composantes/membres/Member";
 import Tontine from "./Composantes/tontines/Tontine";
 import Cotisation from "./Composantes/cotisation/Cotisation";
+import InfoUser from "./Composantes/tontines/InfoUser";
 // import AjoutTon from "./Composantes/tontines/AjoutTon";
-function App() {
+
+
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
@@ -21,6 +24,7 @@ function App() {
         <Route exact path="/membres" component={Member} />
         <Route exact path="/tontines" component={Tontine} />
         <Route exact path="/cotisations" component={Cotisation} />
+        <Route path="/info-user" component={InfoUser} />
         {/* <Route exact path="/" component={AjoutTon} /> */}
       </Switch>
     </BrowserRouter>
