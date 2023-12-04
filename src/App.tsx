@@ -25,7 +25,6 @@ const App: React.FC = () => {
         <Route exact path="/tontines" component={Tontine} />
         <Route exact path="/cotisations" component={Cotisation} />
         <Route path="/info-user" component={InfoUser} />
-        {/* <Route exact path="/" component={AjoutTon} /> */}
       </Switch>
     </BrowserRouter>
   );
