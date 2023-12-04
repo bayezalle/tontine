@@ -5,7 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { RouteComponentProps } from "react-router-dom";
-import './conect.css'
+import "./conect.css";
 
 type SomeComponentProps = RouteComponentProps;
 const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
@@ -14,18 +14,16 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const login = (data: any) => {
     let params = {
       phoneNumber: data.phoneNumber,
       password: data.password,
     };
-    // console.log(data);
-    
+
     axios
-      .post('https://fewnu-tontin.onrender.com/auth/login', params)
+      .post("https://fewnu-tontin.onrender.com/auth/login", params)
       .then(function (response) {
-        //   IF numberphone ALREADY EXISTS
         if (response.data.success === false) {
           toast.error(response.data.error, {
             position: "top-right",
@@ -37,7 +35,6 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
             progress: 0,
             toastId: "my_toast",
           });
-
         } else {
           toast.success(response.data.message, {
             position: "top-right",
@@ -49,16 +46,17 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
             progress: 0,
             toastId: "my_toast",
           });
-          localStorage.getItem("auth");
 
-          //deconnection
+          // Stocker les données de l'utilisateur dans le local storage
+          localStorage.setItem("auth", "true"); // Exemple, ajustez selon vos besoins
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+
+          // Déconnexion
           setTimeout(() => {
             history.push("/home");
           }, 3000);
-
         }
       })
-
       .catch(function (error) {
         console.log(error);
       });
@@ -71,7 +69,10 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
           className="row d-flex justify-content-center align-items-center"
           style={{ height: "100vh" }}
         >
-          <div className="card  bg-white shadow mb-3" style={{ maxWidth: "380px" }}>
+          <div
+            className="card  bg-white shadow mb-3"
+            style={{ maxWidth: "380px" }}
+          >
             <div className="col-md-12">
               <div className="card-body">
                 <h3 className="card-title text-center text-secondary mt-3">
@@ -84,14 +85,16 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                       type="phone"
                       className="form-control shadow-none input-couleur"
                       id="exampleFormControlInput1"
-                      {...register("phoneNumber", { required: "Email is required!" })}
+                      {...register("phoneNumber", {
+                        required: "Email is required!",
+                      })}
                     />
-                   {errors.phoneNumber && typeof errors.phoneNumber === 'object' && (
-                      <p className="text-danger" style={{ fontSize: 14 }}>
-                        {(errors.phoneNumber as { message?: string }).message}
-                      </p>
-                    )}
-
+                    {errors.phoneNumber &&
+                      typeof errors.phoneNumber === "object" && (
+                        <p className="text-danger" style={{ fontSize: 14 }}>
+                          {(errors.phoneNumber as { message?: string }).message}
+                        </p>
+                      )}
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Password</label>
@@ -103,20 +106,19 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
                         required: "Password is required!",
                       })}
                     />
-                  
-                  {errors.password && typeof errors.password === 'object' && (
+
+                    {errors.password && typeof errors.password === "object" && (
                       <p className="text-danger" style={{ fontSize: 14 }}>
                         {(errors.password as { message?: string }).message}
                       </p>
                     )}
-
                   </div>
                   <div className="text-center mt-4 ">
                     <button
                       className="btn btn-couleur text-center shadow-none mb-3"
                       type="submit"
                     >
-                     connexion
+                      connexion
                     </button>
                     {/* <p className="card-text pb-2">
                       Pas encore de compte? {" "}
