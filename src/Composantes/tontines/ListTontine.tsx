@@ -4,7 +4,7 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { useHistory } from 'react-router-dom';
-
+import MemberListModal from "./MemberListModal";
 
 // Ajoutez une interface pour représenter un participant
 interface Participant {
@@ -17,7 +17,7 @@ interface Tontine {
   tontine: string;
   somme: number;
   cotisationDay: string;
-  participants: Participant[];
+  participants: Participant[]; 
   participantsActuels: number[];
 }
 
@@ -32,6 +32,8 @@ const ListTontine: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState(""); // Ajout de l'état pour le terme de recherche
   const [tontines, setTontines] = useState<Tontine[]>([]); // Ajout de l'état pour stocker les tontines
   // const [selectedTontine, setSelectedTontine] = useState<Tontine | null>(null);
+  const [selectedTontineId, setSelectedTontineId] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const history = useHistory();
 
@@ -109,14 +111,23 @@ const ListTontine: React.FC = () => {
     return tontine.participants ? tontine.participants.length : 0;
   };
 
+  const handleOpenModal = (tontineId: number) => {
+
+    setSelectedTontineId(tontineId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedTontineId(null);
+    setIsModalOpen(false);
+  };
+  
   const handleAjouterParticipant = (e: React.MouseEvent<HTMLButtonElement>, tontine: Tontine) => {
     e.preventDefault();
     // setSelectedTontine(tontine); 
     history.push('/info-user');
   };
   
-  
-
   return (
     <div className="container pt-5 mt-3">
       <div className="row">
@@ -233,9 +244,9 @@ const ListTontine: React.FC = () => {
                  <option value="Samrdi">Samedi</option>
                 <option value="Dimanche">Dimanche</option>
             </select>
-            <button type="submit" className="btn btn-primary mt-3">
+            {/* <button type="submit" className="btn btn-primary mt-3">
               Enregistrer
-            </button>
+            </button> */}
               </form>
               </div>
                 </div>
@@ -250,10 +261,10 @@ const ListTontine: React.FC = () => {
              <div className="card p-3 border-2 shadow">
             <div className="d-flex justify-content-between align-itemes-center mb-2">
               <h4 className="fw-bold">{tontine.tontine}</h4>
-              <button className="btn btn-sm rounded btn-ton" onClick={(e) => handleAjouterParticipant(e, tontine)}>
+              <button className="btn btn-sm rounded btn-ton" 
+                onClick={(e) => handleAjouterParticipant(e, tontine)}>
                 <FaUserPlus />
               </button>
-
             </div>
             <div className="row d-flex justify-content-between align-items-center">
               <div className="col-md-4 mb-2">
@@ -270,6 +281,32 @@ const ListTontine: React.FC = () => {
           </div>
         ))}
       </div>
+      {/* //bbllblblbb */}
+      <div>
+      {/* ... (autre contenu) */}
+      <div className="row mt-3 ">
+        {filteredTontines.map((tontine) => (
+          <div className="col-lg-6 col-md-6 col-sm-12 mb-3" key={tontine.id}>
+            <div className="card p-3 border-2 shadow">
+              {/* ... (autre contenu de la carte) */}
+              <button
+                className="btn btn-sm rounded btn-ton"
+                onClick={() => handleOpenModal(tontine.id)}
+              >
+                Afficher les Membres
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {isModalOpen && selectedTontineId && (
+        <MemberListModal
+          tontineId={selectedTontineId}
+          onClose={handleCloseModal}
+        />
+      )}
+    </div>
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import "./Sidebar.css";
 import { FaBars } from "react-icons/fa6";
 import { BsCaretLeftSquare } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
+
 
 
 
@@ -29,6 +31,22 @@ const Sidebar: FC = () => {
       link: "/Cotisations",
     },
   ];
+
+  const history = useHistory();
+
+  const handleLogout = () => {
+    try {
+      // Effacer les informations de l'utilisateur du local storage
+      localStorage.removeItem("user");
+  
+      // Rediriger l'utilisateur vers la page de connexion (ou toute autre page appropriée)
+      history.replace("/");
+    } catch (error) {
+      alert("Erreur de déconnexion, veuillez vérifier votre connexion");
+      console.error(error);
+    }
+  };
+  
   return (
     <div id="sidebar" >
       <button
@@ -66,7 +84,7 @@ const Sidebar: FC = () => {
           </li>
         ))}
         <li className="mt-5 side-link">
-              <button id="logout" className="btn btn-danger">
+              <button id="logout" className="btn btn-danger" onClick={handleLogout}>
                 Déconnexion
               </button>
             </li>
