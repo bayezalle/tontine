@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { RouteComponentProps } from "react-router-dom";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { RouteComponentProps } from "react-router-dom";
 import "./conect.css";
 
 type SomeComponentProps = RouteComponentProps;
@@ -69,6 +69,19 @@ const Login: FC<SomeComponentProps> = ({ history }): JSX.Element => {
       }
     } catch (error) {
       console.error(error);
+
+      // Affichage d'une notification d'erreur avec react-toastify en cas d'échec de la requête axios
+      toast.error("Numéro téléphone ou mot de passe incorrect.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: 0,
+        toastId: "my_toast_error",
+      });
+
       setLoading(false);
     }
   };
