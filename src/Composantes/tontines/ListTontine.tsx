@@ -4,7 +4,7 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { useHistory } from 'react-router-dom';
-import MemberListModal from "./MemberListModal";
+// import MemberListModal from "./MemberListModal";
 
 // Ajoutez une interface pour représenter un participant
 interface Participant {
