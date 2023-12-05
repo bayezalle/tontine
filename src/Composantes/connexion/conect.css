@@ -20,7 +20,14 @@
 
 .btn-couleur{
     background-color: #20DF7F;
-    color: black;
+    color: #093545;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.btn-couleur:hover{
+    color: #20DF7F;
+    background-color: #093545;
     border-radius: 50px;
     font-size: 18px;
     font-weight: bold;
