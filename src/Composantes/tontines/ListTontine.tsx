@@ -13,12 +13,20 @@ interface Participant {
 }
 // Définissez le type pour une tontine
 interface Tontine {
-  id: number;
+  id: string;
   tontine: string;
   somme: number;
   cotisationDay: string;
   participants: Participant[]; 
   participantsActuels: number[];
+}
+interface Member {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: number;
+  email: string;
+  // other properties...
 }
 
 const ListTontine: React.FC = () => {
@@ -31,10 +39,10 @@ const ListTontine: React.FC = () => {
   const [addedSuccessfully, setAddedSuccessfully] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajout de l'état pour le terme de recherche
   const [tontines, setTontines] = useState<Tontine[]>([]); // Ajout de l'état pour stocker les tontines
-  // const [selectedTontine, setSelectedTontine] = useState<Tontine | null>(null);
-  const [selectedTontineId, setSelectedTontineId] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTontineId, setSelectedTontineId] = useState<string | null>(null);
+  const [members, setMembers] = useState<Member[]>([]);
 
+  
   const history = useHistory();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,23 +118,41 @@ const ListTontine: React.FC = () => {
     // Vous pouvez utiliser tontine.participants ou ajuster selon votre structure de données
     return tontine.participants ? tontine.participants.length : 0;
   };
+  
+  useEffect(() => {
+    // Récupérer la liste des utilisateurs
+    axios
+      .get('https://fewnu-tontin.onrender.com/user/profile')
+      .then((response) => {
+        setMembers(response.data);        
+      })
+      .catch((error) => {
+        console.error('Failed to fetch members:', error.message);
+      });
+  }, []); 
 
-  const handleOpenModal = (tontineId: number) => {
-
-    setSelectedTontineId(tontineId);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedTontineId(null);
-    setIsModalOpen(false);
+  useEffect(() => {
+    if (selectedTontineId) {
+      // Récupérer la liste des membres spécifiques à la tontine
+      axios
+        .get(`https://fewnu-tontin.onrender.com/getParticipants/getParticipants/${selectedTontineId}`)
+        .then((response) => {
+          setMembers(response.data);
+        })
+        .catch((error) => {
+          console.error('Failed to fetch members:', error.message);
+        });
+    }
+  }, [selectedTontineId]);
+  
+  const participer = (userId: string) => {
+    if (selectedTontineId) {
+      // Logique pour faire participer le membre à la tontine spécifiée
+      // ...
+    }
   };
   
-  const handleAjouterParticipant = (e: React.MouseEvent<HTMLButtonElement>, tontine: Tontine) => {
-    e.preventDefault();
-    // setSelectedTontine(tontine); 
-    history.push('/info-user');
-  };
+ 
   
   return (
     <div className="container pt-5 mt-3">
@@ -244,9 +270,9 @@ const ListTontine: React.FC = () => {
                  <option value="Samrdi">Samedi</option>
                 <option value="Dimanche">Dimanche</option>
             </select>
-            {/* <button type="submit" className="btn btn-primary mt-3">
+            <button type="submit" className="btn btn-primary mt-3">
               Enregistrer
-            </button> */}
+            </button>
               </form>
               </div>
                 </div>
@@ -255,57 +281,76 @@ const ListTontine: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="row mt-3 ">
+      {/*bblblbllblllblblbllblbl  */}
+      <div>
+    <div className="row mt-3 ">
         {filteredTontines.map((tontine) => (
           <div className="col-lg-6 col-md-6 col-sm-12 mb-3" key={tontine.id}>
-             <div className="card p-3 border-2 shadow">
-            <div className="d-flex justify-content-between align-itemes-center mb-2">
+            <div className="card p-3 border-2 shadow">
+              <div className="d-flex justify-content-between align-itemes-center mb-2">
               <h4 className="fw-bold">{tontine.tontine}</h4>
-              <button className="btn btn-sm rounded btn-ton" 
-                onClick={(e) => handleAjouterParticipant(e, tontine)}>
-                <FaUserPlus />
+              <button
+                className="btn btn-sm rounded btn-ton d-flex gap-2 align-items-center"
+                data-bs-toggle="modal" data-bs-target="#exampleModal10"
+                onClick={() => setSelectedTontineId(tontine.id)}
+                >
+                 Ajouter Membre<FaUserPlus />
               </button>
             </div>
             <div className="row d-flex justify-content-between align-items-center">
               <div className="col-md-4 mb-2">
                 <span className="fw-bold">Montant Global</span><br/><span>{tontine.somme} Fcfa</span>
               </div>
-             <div className="col-md-4 mb-2">
-                <span className="fw-bold">Jour de cotisation<br/></span><span>{tontine.cotisationDay}</span>
-             </div>
+              <div className="col-md-4 mb-2">
+                  <span className="fw-bold">Jour de cotisation<br/></span><span>{tontine.cotisationDay}</span>
+              </div>
               <div className="col-md-4 mb-2">
                 <span className="fw-bold">Participants<br/></span><span className="fw-semibold"> {countParticipants(tontine)}</span>
               </div>
             </div>
-          </div>
-          </div>
-        ))}
-      </div>
-      {/* //bbllblblbb */}
-      <div>
-      {/* ... (autre contenu) */}
-      <div className="row mt-3 ">
-        {filteredTontines.map((tontine) => (
-          <div className="col-lg-6 col-md-6 col-sm-12 mb-3" key={tontine.id}>
-            <div className="card p-3 border-2 shadow">
-              {/* ... (autre contenu de la carte) */}
-              <button
-                className="btn btn-sm rounded btn-ton"
-                onClick={() => handleOpenModal(tontine.id)}
-              >
-                Afficher les Membres
-              </button>
             </div>
           </div>
         ))}
       </div>
-
-      {isModalOpen && selectedTontineId && (
-        <MemberListModal
-          tontineId={selectedTontineId}
-          onClose={handleCloseModal}
-        />
-      )}
+    </div>
+    {/* modal ajout membres no participants */}
+    <div className="modal fade" id="exampleModal10"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal-dialog modal-lg">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h1 className="modal-title fs-5" id="exampleModalLabel">Liste des Membres</h1>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div className="modal-body">
+          <div className="container">
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Prenom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {members.map((member) => (
+                <tr>
+                    <td>{member.firstName}</td>
+                    <td>{member.lastName}</td>
+                    <td>{member.phoneNumber}</td>
+                    <td><button className="btn btn-sm btn-secondary mb-2">Ajouter</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
     </div>
   );

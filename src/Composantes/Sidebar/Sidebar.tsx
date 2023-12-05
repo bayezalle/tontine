@@ -46,6 +46,7 @@ const Sidebar: FC = () => {
       console.error(error);
     }
   };
+
   
   return (
     <div id="sidebar" >

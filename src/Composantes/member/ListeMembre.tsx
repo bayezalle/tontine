@@ -21,7 +21,7 @@ const ListeMembere: FC = () => {
       .catch((error) => {
         console.error('Failed to fetch members:', error.message);
       });
-  }, []); // Le tableau vide comme deuxième argument signifie que ce code s'exécute une seule fois après le montage initial.
+  }, []); 
   
     //Nombre total des utilisateurs
     const totalMembers = members.length;
