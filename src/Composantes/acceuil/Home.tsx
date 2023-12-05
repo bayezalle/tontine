@@ -5,6 +5,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Header from "../Header/Header";
 import Dashboard from "../dashboard/Dashboard";
 
+
 type SomeComponentProps = RouteComponentProps;
 const Home: FC<SomeComponentProps> = ({ history }) => {
   // const logout = () => {

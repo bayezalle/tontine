@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import "./conect.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 type SomeComponentProps = RouteComponentProps;
 

@@ -129,15 +129,16 @@ const ListTontine: React.FC = () => {
       .catch((error) => {
         console.error('Failed to fetch members:', error.message);
       });
-  }, []); 
+  }, [selectedTontineId]); 
 
   useEffect(() => {
     if (selectedTontineId) {
       // Récupérer la liste des membres spécifiques à la tontine
       axios
-        .get(`https://fewnu-tontin.onrender.com/getParticipants/getParticipants/${selectedTontineId}`)
+        .get(`https://fewnu-tontin.onrender.com/getTontineById/getTontineById/${selectedTontineId}`)
         .then((response) => {
           setMembers(response.data);
+          console.log(members);
         })
         .catch((error) => {
           console.error('Failed to fetch members:', error.message);
@@ -148,9 +149,24 @@ const ListTontine: React.FC = () => {
   const participer = (userId: string) => {
     if (selectedTontineId) {
       // Logique pour faire participer le membre à la tontine spécifiée
-      // ...
+      // Vous pouvez utiliser l'ID de la tontine (selectedTontineId) et l'ID du membre (userId) pour effectuer l'opération appropriée
+      // Par exemple, vous pouvez envoyer une requête POST à l'API pour ajouter le membre à la tontine
+      axios.post(`https://fewnu-tontin.onrender.com/tontines/addMember/${selectedTontineId}`, { userId })
+        .then((response) => {
+          // Traitez la réponse si nécessaire
+          console.log('Membre ajouté avec succès à la tontine :', response.data);
+          alert('Membre ajouté avec succès à la tontine');
+          // Fermez le modal ou effectuez d'autres actions nécessaires
+        })
+        .catch((error) => {
+          // Gérez les erreurs ici
+          console.error("Erreur lors de l'ajout du membre à la tontine :", error);
+          // Affichez un message d'erreur convivial à l'utilisateur
+          alert("Une erreur s'est produite lors de l'ajout du membre à la tontine. Veuillez réessayer plus tard.");
+        });
     }
   };
+  
   
  
   
@@ -294,7 +310,7 @@ const ListTontine: React.FC = () => {
                 data-bs-toggle="modal" data-bs-target="#exampleModal10"
                 onClick={() => setSelectedTontineId(tontine.id)}
                 >
-                 Ajouter Membre<FaUserPlus />
+                <FaUserPlus />
               </button>
             </div>
             <div className="row d-flex justify-content-between align-items-center">
@@ -333,14 +349,21 @@ const ListTontine: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {members.map((member) => (
-                <tr>
-                    <td>{member.firstName}</td>
-                    <td>{member.lastName}</td>
-                    <td>{member.phoneNumber}</td>
-                    <td><button className="btn btn-sm btn-secondary mb-2">Ajouter</button></td>
-                </tr>
-              ))}
+            {members.map((member) => (
+              <tr key={member._id}>
+                <td>{member.firstName}</td>
+                <td>{member.lastName}</td>
+                <td>{member.phoneNumber}</td>
+                <td>
+                  <button type="button"
+                    className="btn btn-sm btn-secondary mb-2"
+                    onClick={() => participer(member._id)}
+                  >
+                    Ajouter
+                  </button>
+                </td>
+              </tr>
+            ))}
             </tbody>
           </table>
         </div>
