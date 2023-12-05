@@ -333,8 +333,22 @@ const ListTontine: React.FC = () => {
     <div className="modal fade" id="exampleModal10"  aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
-          <div className="modal-header">
-            <h1 className="modal-title fs-5" id="exampleModalLabel">Liste des Membres</h1>
+          <div className="modal-header gap-5">
+          <h1 className="modal-title fs-5" id="exampleModalLabel">Liste des Membres</h1>
+          <div className="input-group mb-3 w-50">
+            <span className="input-group-text" id="basic-addon1">
+              <FaSearch className="recherche" />
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Recherche"
+              aria-label="Recherche"
+              aria-describedby="basic-addon1"
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">

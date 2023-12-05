@@ -12,21 +12,20 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
   const {
     register,
     handleSubmit,
-    // watch,
     reset,
     formState: { errors },
   } = useForm();
 
   const submitData = (data: any) => {
     let params = {
-      firstName:data.firstName,
-      lastName:data.lastName,
-      // username: data.username,
+      firstName: data.firstName,
+      lastName: data.lastName,
       phoneNumber: data.phoneNumber,
       email: data.email,
       password: data.password,
+      role: data.role, // Ajout du champ role
     };
-    console.log(data);
+   console.log(data);
     axios
       .post('https://fewnu-tontin.onrender.com/auth/register', params)
       .then(function (response) {
@@ -47,21 +46,21 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
           history.push("/");
         }, 3000);
       })
-
       .catch(function (error) {
         console.log(error);
       });
   };
+
   return (
     <>
       <div className="container-fluid register-page ">
         <div
           className="row d-flex justify-content-center align-items-center"
-          style={{ height: "100vh" }}
+          style={{ height: "200vh" }}
         >
           <div className="card mb-3 mt-3 rounded bg-white shadow " style={{ maxWidth: "380px" }}>
             <div className="col-md-12">
-              <div    className="card-body">
+              <div className="card-body">
                 <h3 className="card-title text-center text-secondary mt-3 mb-3">
                   Sign Up Form
                 </h3>
@@ -72,36 +71,36 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                 >
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">Fist Name</label>
+                      <label className="form-label">First Name</label>
                       <input
                         type="text"
                         className="form-control form-control-sm input-couleur"
                         id="exampleFormControlInput1"
                         {...register("firstName", {
-                          required: "firstName is required!",
+                          required: "First Name is required!",
                         })}
                       />
                       {errors.firstName && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
-                          {/* {errors.username.message} */}
+                          {/* {errors.firstName.message} */}
                         </p>
                       )}
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">last Name</label>
+                      <label className="form-label">Last Name</label>
                       <input
                         type="text"
                         className="form-control form-control-sm input-couleur"
                         id="exampleFormControlInput1"
                         {...register("lastName", {
-                          required: "lastName is required!",
+                          required: "Last Name is required!",
                         })}
                       />
                       {errors.lastName && (
                         <p className="text-danger" style={{ fontSize: 14 }}>
-                          {/* {errors.username.message} */}
+                          {/* {errors.lastName.message} */}
                         </p>
                       )}
                     </div>
@@ -114,7 +113,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                         className="form-control form-control-sm input-couleur"
                         id="exampleFormControlInput2"
                         {...register("phoneNumber", {
-                          required: "phoneNumber is required!",
+                          required: "Telephone is required!",
                         })}
                       />
                       {errors.phoneNumber && (
@@ -138,7 +137,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                         {/* {errors.email.message} */}
                       </p>
                     )}
-                  </div> 
+                  </div>
                   <div className="">
                     <label className="form-label">Password</label>
                     <input
@@ -155,7 +154,32 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       </p>
                     )}
                   </div>
-                 
+                  <div className="">
+                    <label className="form-label">Password</label>
+                    <input
+                      type="password"
+                      className="form-control form-control-sm input-couleur"
+                      id="exampleFormControlInput5"
+                      {...register("password", {
+                        required: "Password is required!",
+                      })}
+                    />
+                    {errors.password && (
+                      <p className="text-danger" style={{ fontSize: 14 }}>
+                        {/* {errors.password.message} */}
+                      </p>
+                    )}
+                  </div>
+                  <div className="">
+                    <label className="form-label">Role</label>
+                    <select
+                      className="form-control form-control-sm input-couleur"
+                      {...register("role")}
+                    >
+                      <option value="user">User</option>
+                      {/* Ajoutez d'autres options de rôle si nécessaire */}
+                    </select>
+                  </div>
                   <div className="text-center mt-4 ">
                     <button
                       className="btn btn-couleur text-center shadow-none mb-3"
@@ -164,7 +188,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       Inscription
                     </button>
                     <p className="card-text">
-                      Vous avez déja un compte? {" "}
+                      Vous avez déjà un compte? {" "}
                       <Link className="fw-bold register" style={{ textDecoration: "none" }} to={"/"}>
                         Connexion
                       </Link>

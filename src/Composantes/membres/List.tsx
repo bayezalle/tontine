@@ -61,6 +61,7 @@ const List: FC = () => {
       phoneNumber: data.phoneNumber,
       email: data.email,
       password: data.password,
+      role:"user",
     };
   
     axios
@@ -270,7 +271,16 @@ const List: FC = () => {
                               </p>
                             )}
                           </div>
-
+                          <div className="">
+                    <label className="form-label">Role</label>
+                    <select
+                      className="form-control form-control-sm input-couleur"
+                      {...register("role")}
+                    >
+                      <option value="user">User</option>
+                      {/* Ajoutez d'autres options de rôle si nécessaire */}
+                    </select>
+                  </div>
                           <div className="text-center mt-4 ">
                             <button
                               className="btn btn-couleur text-center shadow-none mb-3"
